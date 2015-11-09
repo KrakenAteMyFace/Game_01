@@ -41,9 +41,9 @@ def main():
     PLAYER_HEIGHT = 24
     PLAYER_RADIUS = 10
 
-    PLAYER_MAXSPEED_RUN = 2.5
-    PLAYER_MAXSPEED_DEFAULT = 1.5
-    PLAYER_MAXSPEED = 1.5
+    PLAYER_MAXSPEED_RUN = 1.5
+    PLAYER_MAXSPEED_DEFAULT = 0.7
+    PLAYER_MAXSPEED = 0.7
     PLAYER_MAXSTAMINA = 100
     PLAYER_STAMINA = 100
     PLAYER_STAMINA_LOSS = 0.25
@@ -53,7 +53,8 @@ def main():
     PLAYER_ACCELERATION = 0.1
     PLAYER_SLOWDOWN = 0.05
 
-    hud_img = pygame.image.load("resources/hud.png")
+    hud_front_img = pygame.image.load("resources/hud_front.png")
+    hud_back_img = pygame.image.load("resources/hud_back.png")
 
     crosshair_img = pygame.image.load("resources/crosshair.png")
     crosshair_width = crosshair_img.get_width()
@@ -184,10 +185,10 @@ def main():
 
         screen.blit(crosshair_img, (crosshair_x, crosshair_y))
 
-        pygame.draw.rect(screen, COLOR_WHITE, [0, 580, SCREEN_WIDTH, 20])
+        screen.blit(hud_back_img, (0, 580))
         pygame.draw.rect(screen, COLOR_RED, [0, 580, int(PLAYER_HEALTH)*((SCREEN_WIDTH/2)/PLAYER_MAXHEALTH), 20])
         pygame.draw.rect(screen, COLOR_GREEN, [(SCREEN_WIDTH-(PLAYER_MAXSTAMINA*((SCREEN_WIDTH/2)/PLAYER_MAXSTAMINA))), 580, int(PLAYER_STAMINA)*((SCREEN_WIDTH/2)/PLAYER_MAXSTAMINA), 20])
-        screen.blit(hud_img, (0, 580))
+        screen.blit(hud_front_img, (0, 580))
 
 
         #FLIP DISPLAY AND TICK CLOCK
